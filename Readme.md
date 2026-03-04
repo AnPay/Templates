@@ -5,6 +5,13 @@
 - Edge cases:
 - Time complexity:
 
+## How To Force Yourself To Find Invariant
+
+- Before coding, ask:
+- What am I maintaining? 
+- What must always be true?
+- What property makes this approach correct?
+
 ## Before coding: Force yourself to list:
 
 - Empty input?
