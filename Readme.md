@@ -1,9 +1,9 @@
 ## From now on, every problem must include a written section BEFORE coding:
-Pattern:
-State:
-Transition:
-Edge cases:
-Time complexity:
+- Pattern:
+- State:
+- Transition:
+- Edge cases:
+- Time complexity:
 
 ## Sliding Window:
 - Expand
