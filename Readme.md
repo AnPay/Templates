@@ -5,6 +5,14 @@
 - Edge cases:
 - Time complexity:
 
+## Before coding: Force yourself to list:
+
+- Empty input?
+- Single element?
+- All equal?
+- Strictly increasing/decreasing?
+- Negative numbers?
+  
 ## Sliding Window:
 - Expand
 - Fix
