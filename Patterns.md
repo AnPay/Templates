@@ -23,3 +23,11 @@
 - Trapping Rain Water (stack version)
 
 All same family.
+
+| Problem              | Stack Type |
+| -------------------- | ---------- |
+| Next Greater Element | Decreasing |
+| Daily Temperatures   | Increasing |
+| Stock Span           | Decreasing |
+| Largest Rectangle    | Increasing |
+
