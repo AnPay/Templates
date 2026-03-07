@@ -13,3 +13,13 @@
 | Longest Consecutive | HashSet               |
 | Valid Sudoku        | Constraint hashing    |
 | Group Anagrams      | Hashmap canonical key |
+
+## Monotonic Stack
+
+- Next Greater Element
+- Daily Temperatures
+- Stock Span
+- Largest Rectangle in Histogram
+- Trapping Rain Water (stack version)
+
+All same family.
