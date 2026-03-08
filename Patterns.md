@@ -31,3 +31,16 @@ All same family.
 | Stock Span           | Decreasing |
 | Largest Rectangle    | Increasing |
 
+                Backtracking Problem
+                        |
+             ------------------------
+             |                      |
+       Order matters?           No order
+             |                      |
+         Permutations          Reuse allowed?
+                                   |
+                        ---------------------
+                        |                   |
+                      Yes                  No
+                        |                   |
+                Combination Sum       Subsets / Combinations
