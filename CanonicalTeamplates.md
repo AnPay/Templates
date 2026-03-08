@@ -269,3 +269,28 @@ Examples:
     }
 }
 ```
+## Master BT template
+```C++
+void bt(vector<int>& nums, vector<int>& curr, int start)
+{
+    if(base_condition)
+    {
+        res.push_back(curr);
+        return;
+    }
+
+    for(int i = start; i < nums.size(); i++)
+    {
+        if(skip_condition) continue;
+
+        // choose
+        curr.push_back(nums[i]);
+
+        // explore
+        bt(nums, curr, next_start);
+
+        // unchoose
+        curr.pop_back();
+    }
+}
+```
