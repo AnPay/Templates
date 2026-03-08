@@ -216,6 +216,7 @@ Used when:
 # Examples:
 - Combination Sum
 - Coin change style problems
+- 
 ```C++
 void bt(vector<int>& nums, int target, vector<int>& curr, int start)
 {
@@ -236,4 +237,35 @@ void bt(vector<int>& nums, int target, vector<int>& curr, int start)
     }
 }
 ```
+## Permutations (Used Array)
 
+Used when:
+- Order matters
+- Each element used once
+Examples:
+- Permutations
+- Permutations II
+
+```C++
+  void bt(vector<int>& nums, vector<int>& curr, vector<bool>& used)
+{
+    if(curr.size() == nums.size())
+    {
+        res.push_back(curr);
+        return;
+    }
+
+    for(int i = 0; i < nums.size(); i++)
+    {
+        if(used[i]) continue;
+
+        used[i] = true;
+        curr.push_back(nums[i]);
+
+        bt(nums, curr, used);
+
+        curr.pop_back();
+        used[i] = false;
+    }
+}
+```
