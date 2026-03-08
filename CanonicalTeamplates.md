@@ -178,6 +178,62 @@ State:
 - dp[i] = max money from 0..i
 ```
 
+## Subsets / Combinations (Pick or Skip Forward)
+Used when:
+
+- Order does NOT matter
+- Each element used at most once
+- We move forward only
+
+## Examples:
+
+- Subsets
+- Subsets II
+- Combinations
+- Combination Sum II
 
 ```C++
+
+void bt(vector<int>& nums, vector<int>& curr, int start)
+{
+    res.push_back(curr);
+
+    for(int i = start; i < nums.size(); i++)
+    {
+        curr.push_back(nums[i]);      // choose
+        bt(nums, curr, i + 1);        // move forward
+        curr.pop_back();              // unchoose
+    }
+}
 ```
+## Combination Sum (Reuse Allowed)
+
+Used when:
+- Same element can be reused
+- Order does NOT matter
+- Need to satisfy target sum
+
+# Examples:
+- Combination Sum
+- Coin change style problems
+```C++
+void bt(vector<int>& nums, int target, vector<int>& curr, int start)
+{
+    if(target == 0)
+    {
+        res.push_back(curr);
+        return;
+    }
+
+    if(target < 0)
+        return;
+
+    for(int i = start; i < nums.size(); i++)
+    {
+        curr.push_back(nums[i]);          
+        bt(nums, target - nums[i], curr, i);  // reuse allowed
+        curr.pop_back();
+    }
+}
+```
+
