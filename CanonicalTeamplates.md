@@ -178,7 +178,7 @@ State:
 - dp[i] = max money from 0..i
 ```
 
-## Subsets / Combinations (Pick or Skip Forward)
+## Backtracking Subsets / Combinations (Pick or Skip Forward)
 Used when:
 
 - Order does NOT matter
@@ -206,7 +206,7 @@ void bt(vector<int>& nums, vector<int>& curr, int start)
     }
 }
 ```
-## Combination Sum (Reuse Allowed)
+## Backtracking Combination Sum (Reuse Allowed)
 
 Used when:
 - Same element can be reused
@@ -237,7 +237,7 @@ void bt(vector<int>& nums, int target, vector<int>& curr, int start)
     }
 }
 ```
-## Permutations (Used Array)
+## Backtracking Permutations (Used Array)
 
 Used when:
 - Order matters
