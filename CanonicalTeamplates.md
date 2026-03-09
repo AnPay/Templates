@@ -158,26 +158,6 @@ int dfs(TreeNode* root)
   return root->val+max(lSum,rSum);
 }
 ```
-
-## 1D DP – House Robber Template 
-```C++
-int rob(vector<int> &nums)
-{
-  int n = nums.size();
-  if(n==1) return nums[0];
-  vector<int>dp(n,0);
-  dp[0]=0;
-  dp[1]=max(dp[0],dp[1]);
-  for(int i =2;i<n;i++)
-  {
-      dp[i]=max(dp[i-1],nums[i]+dp[i-2]);
-  }
-  return dp[n-1]; 
-}
-State:
-- dp[i] = max money from 0..i
-```
-
 ## Backtracking Subsets / Combinations (Pick or Skip Forward)
 Used when:
 
@@ -293,4 +273,22 @@ void bt(vector<int>& nums, vector<int>& curr, int start)
         curr.pop_back();
     }
 }
+```
+## 1D DP – House Robber Template 
+```C++
+int rob(vector<int> &nums)
+{
+  int n = nums.size();
+  if(n==1) return nums[0];
+  vector<int>dp(n,0);
+  dp[0]=0;
+  dp[1]=max(dp[0],dp[1]);
+  for(int i =2;i<n;i++)
+  {
+      dp[i]=max(dp[i-1],nums[i]+dp[i-2]);
+  }
+  return dp[n-1]; 
+}
+State:
+- dp[i] = max money from 0..i
 ```
