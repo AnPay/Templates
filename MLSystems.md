@@ -116,6 +116,79 @@ print("Dequantized:", dq)
 /*
 “Execution inside ModelEngine would dispatch attention and MLP ops to NPU, while tokenizer and sampling remain on CPU.”
 */
+Class SimpleModelEngine{
+private:
+  int vocab_size, hidden_size, num_layers, num_heads, head_dim;
+
+public:
+  SimpleModelEngine(int vocab_size=32000, int hidden_size=2560, int num_layers=32, int num_heads=32):
+    vocab_size(vocab_size),hidden_size(hidden_size),num_layers(num_layers),num_heads(num_heads),
+    head_dim(hidden_size/num_heads){
+    std::cout<<"Model Engine initialized:"<<num_layers<<num_heads<<"\n";
+}
+
+//PrefillL Process all input toekns to gether and generate kv cache
+struct PrefillOutput{
+  std::vector<float> logits;
+  vector<vector<vector<float>>> keys; //[layer][token][head*dim]
+  vector<vector<vector<float>>> values; //[layer][token][head*dim]
+
+PrefillOutput prefill(vector<int> input_tokens)
+{
+  PrefillOutput output;
+  //initialize kv cache
+  output.keys.resize(num_layers);
+  output.values.resize(num_layers);
+  for(int i =0;i<num_layers;i++)
+  {
+    output.keys[layer].resize(input_Tokens);
+    output.values[layer].resize(input_Tokens);
+    for(int pos=0;pos<input_tokens.size();i++)
+    {
+      output.keys[layer][pos].resize(num_head*head_dim);
+      output.values[layer][pos].resize(num_head*head_dim);
+    }
+  }
+
+  //process each layer
+  for(int i =0;i<num_layers;i++)
+  {
+    for(int pos=0;pos<input_tokens.size();i++)
+    {
+      vector<float>& key = output.keys[layer][pos];
+      vector<float>&value = output.values[layer][pos];
+      for(int i =0;i<key.size();i++)
+      {
+        key[i]=static_cast<float>(input_tokens[pos]+layer+i)*0.01f;
+        value[i]=static_cast<float>(input_tokens[pos]+layer+i)*0.01f;
+      }
+    }
+  }
+
+  //Generate final logit
+  //simulated
+
+  return output;
+}
+
+//Decode: Process single token with kv cache
+std::vector<float> Decode(int current_token, vector<vector<vector>>>key, vector<vector<vector>>>values)
+{
+  for(int i =0;i<num_layers;i++)
+  {
+    //Simulate attention with kv cache
+    //Simulate generating new kv for this token
+    
+  }
+  //return simulated logits
+  std::vector<float> logits(vocab_size, 0.0f);
+  return logit;
+}
+}
+
+
+public:
+};
 Class SmallLLMPipeline{
 private:
   SimpleTokenizer tokenizer;
