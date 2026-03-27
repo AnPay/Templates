@@ -56,7 +56,7 @@ After each fix, I would re-profile to confirm improvements and ensure latency is
 Tradeoff
 Optimizations like op replacement or fusion may slightly impact accuracy or increase engineering complexity, so I would balance latency gains against these costs.”
 
-```
+```Python
 import numpy as np
 
 def calculate_scale_zero_point(min_val, max_val, num_bits=8):
@@ -112,6 +112,75 @@ print("Dequantized:", dq)
 - KV cache optimization
 
 - edge inference on NPU
+```C++
+/*
+“Execution inside ModelEngine would dispatch attention and MLP ops to NPU, while tokenizer and sampling remain on CPU.”
+*/
+Class SmallLLMPipeline{
+private:
+  SimpleTokenizer tokenizer;
+  SimpleModelEngine model;
+  SimpleKVCache kvcache;
+  SimpleSampler sampler;
+  int max_gen;
+  int eos_token;
+  int batch_size;
+
+public:
+  SmallLLMPipeline(std::string embedding_bin, int max_gen, int EOS, int batch,int num_layers,
+                     int num_heads,
+                     int head_dim,
+                     int max_seq_len):
+    tokenizer(embedding_bin),kv_cache(num_layer, num_head,head_dim,max_seq_len),
+    max_gen(max_gen),eos_token(eos),batch_Size(batch){
+    std::cout<<"PipelineInitialized\n";
+  }
+
+  std::string Generate(std::string prompt, int max_tokens=512)
+  {
+  //Input Preparation
+  std::vector<int>tokens = tokenizer.encode(prompt);
+  std::cout<<toekns.size();
+
+  //prefil phase
+  /*
+  “During prefill we populate KV cache for the full prompt, and during decode we only process one token while reusing cached keys and values.”
+*/
+  std::vector<float> logits = model.prefill(tokens,kvcache)
+  int first_token = sampler.GreddySample(logits);
+  std::cout<<"First token"<<first_token<<"\n";
+  std::vector<int>generated_tokens;
+  generated_tokens.reserve(max_tokens);  //Memory optimization hint
+  generated_tokens.push_back(first_token);
+  int current_token = first_token;
+  //AR mode
+  for( int i =0;i<max_tokens;i++)
+  {
+    std::vector<int> logits = model.decode(current_token,kvcache)
+    current_token = sampler.GreddySample(logits);
+    generated_tokens.push_back(current_token);
+    if(curent_token == EOS)
+      break;
+    if(generated_token.size()==max_gen)
+      break;
+  }
+  //Output Decoding
+  std::string output = tokenizer.decode(generated_toekns);
+  return output;
+}
+};
+int main(){
+  int max_gen = 512;
+  int EOS = 2;
+  int batch = 1
+  SmallLLMPipeline pipeline - SmallLLMPipeline("path to embedding bin", max_gen, EOS, batch );
+  std::string prompt = "Steps to design a LLM pipeline";
+  std::string output = pipeline.Generate(prompt,50);
+  std::cout<<"Prompt:"<<prompt<<"\n";
+  std::cout<<"Output:"<<output<<"\n;
+  return 0;
+}
+```
 
 - Structure each story as:
 
