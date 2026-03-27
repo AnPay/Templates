@@ -110,6 +110,70 @@ print("Dequantized:", dq)
 
 
 - KV cache optimization
+```C++
+  Class SimpleKVCache{
+  private:
+      struct KVPair{
+      vector<float>key; //shape:[num_head_head_dim]
+      vector<float>value; //shape:[num_head,head_dim]
+      };
+      vector<vector<KVPair>> cache; //[layer][position]
+      int num_layers;
+      int num_heads;
+      int head_dim;
+      int max_seq_len;
+      int curr_size;  //current number of positionsin cache
+
+  public:
+      SimpleKVCache(int num_layers, int num_heads, int head_Dim, int max_Seq_len):num_layers(num_layers),
+                    num_heads(num_heads),head_dim(head_dim),max_seq_len(max_seq_len),curr_size(0){
+        cache.resize(num_layers);
+        cout<<"KV Cache initialized\n";
+      }
+
+      //Write KV for a single position during prefill
+      void WritePrefill(int layer, int pos, vector<float>& key, vector<float> &val)
+      {
+        if(layer<cache.size() && pos<max_seq_len)
+        {
+          //ensure cache has enough space for this position
+          if(pos >=cache[layer].size()
+              cache[layer].resize(pos+1)
+
+          cache[layer][pos]={key,value};
+
+          if(pos+1>curr_size)
+              curr_size=pos+1;
+        }
+      }
+
+      //Write KV for a single position during decode
+      void WriteDecode(int layer, int pos, vector<float>& key, vector<float> &val)
+      {
+        if(layer<cache.size() && pos<max_seq_len)
+        {
+          cache[layer][pos].push_back({key,value});
+          curr_size++;
+        }  
+      }
+
+      //Read all KV Pairs for a layer
+      std::vector<KVPair> ReadLayer(int layer)
+      {
+        if(layer<cache.size())
+          return cache[layer];
+      }
+
+      //Read KV for specific position in layer
+      KVPair ReadPosition(int layer,int pos)
+      {
+        if(layer<cache.size() && pos<max_seq_len)
+        {
+          return cache[layer][pos];
+        }
+      }
+};
+```
 
 - edge inference on NPU
 ```C++
