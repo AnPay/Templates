@@ -275,6 +275,7 @@ void bt(vector<int>& nums, vector<int>& curr, int start)
 }
 ```
 ## 1D DP – House Robber Template 
+dp[i] = dp[i-1] + dp[i-2]
 ```C++
 int rob(vector<int> &nums)
 {
@@ -291,4 +292,155 @@ int rob(vector<int> &nums)
 }
 State:
 - dp[i] = max money from 0..i
+
+```
+
+### Decision DP
+dp[i] = max(dp[i-1], dp[i-2] + nums[i])
+### String DP
+dp[i] += dp[i - num]
+### BuildUp DP
+dp[i] = any(dp[j] where substring valid)
+### LIS/Pallindromes
+dp[i] = max(dp[j] + 1)
+
+### 1D DP MASTER CHEAT SHEET 
+```
+#### 1. Linear DP (Local dependency)
+🔑 पहचान (recognition)
+Depends on previous 1–2 states
+No splitting, no target
+
+🧠 State
+dp[i] = answer ending at index i
+
+🔁 Transition
+dp[i] = f(dp[i-1], dp[i-2])
+
+📌 Problems
+Climbing Stairs
+Min Cost Climbing Stairs
+House Robber
+House Robber II (circular twist)
+
+⚡ Template
+for (int i = 2; i < n; i++) {
+    dp[i] = ...
+}
+
+
+
+
+#### 2. Partition / Split DP
+🔑 पहचान
+String splitting
+“Can I break / partition?”
+Loop on j
+
+🧠 State
+dp[i] = answer for prefix [0 → i-1]
+
+🔁 Transition
+dp[i] = any(dp[j] && valid(j → i))
+
+📌 Problems
+Word Break
+Decode Ways
+Palindrome Partitioning
+
+⚡ Template
+for (int i = 1; i <= n; i++) {
+    for (int j = 0; j < i; j++) {
+        if (dp[j] && valid(j, i)) {
+            dp[i] = true;
+        }
+    }
+}
+
+
+
+
+#### 3. Target / Knapsack DP
+🔑 पहचान
+“Can we form sum?”
+Coins / subset / target
+Numbers involved (not strings)
+
+🧠 State
+dp[s] = can we make sum s?
+(or number of ways)
+
+🔁 Transition
+dp[s] = dp[s] || dp[s - num]
+dp[s] += dp[s - num]
+
+📌 Problems
+Partition Equal Subset
+Target Sum
+Coin Change I
+Coin Change II
+Combination Sum IV
+
+⚡ Templates
+🔹 0/1 (no reuse → backward)
+for (int num : nums) {
+    for (int s = target; s >= num; s--) {
+        dp[s] |= dp[s - num];
+    }
+}
+🔹 Unbounded (reuse → forward)
+for (int num : nums) {
+    for (int s = num; s <= target; s++) {
+        dp[s] += dp[s - num];
+    }
+}
+
+
+#### 4. State-Based DP (Advanced / tricky)
+🔑 पहचान
+dp[i] alone not enough
+Need extra state (min/max/2 variables)
+
+📌 Problems
+Max Product Subarray
+Longest Palindromic Substring
+
+🧠 Idea
+Max Product:
+track max_so_far and min_so_far
+Palindrome:
+depends on inner substring
+dp[i+1][j-1]
+
+🔥 SUPER SHORT MEMORY VERSION
+
+If you forget everything, remember this:
+
+1️⃣ Linear
+dp[i] ← dp[i-1], dp[i-2]
+2️⃣ Partition
+dp[i] ← dp[j] + check(j → i)
+3️⃣ Target
+dp[s] ← dp[s - num]
+4️⃣ State-based
+extra variables needed
+⚡ Pattern Identification Trick (5 sec rule)
+
+Ask:
+
+❓ Q1: Depends only on previous index?
+
+→ Linear
+
+❓ Q2: Trying all splits?
+
+→ Partition
+
+❓ Q3: Building sum?
+
+→ Target DP
+
+❓ Q4: Needs extra tracking?
+
+→ State-based
 ```
