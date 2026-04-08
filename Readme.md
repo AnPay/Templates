@@ -1,3 +1,8 @@
+## Domain Resources
+
+- https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
+
+
 ## From now on, every problem must include a written section BEFORE coding:
 - Pattern:
 - State:
