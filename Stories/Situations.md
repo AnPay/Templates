@@ -199,7 +199,17 @@ Simplified the pipeline to minimize redundant FP32 validation and unnecessary in
 
 As a result, we reduced the total quantization time drastically to around 3 hours, while maintaining accuracy comparable to the FP32 baseline.
 
+## Story 10
 
+“I worked on optimizing model loading time in our ML pipeline during conversion from frameworks like ONNX and TensorFlow to our internal SNF format.
+
+Earlier, we were using Protocol Buffers for serialization, which requires sequential parsing. I identified this as a bottleneck in model loading latency.
+
+To address this, I integrated FlatBuffers, which supports zero-copy deserialization and direct access to nested data structures without full parsing.
+
+By replacing ProtoBuffers with FlatBuffers in the conversion pipeline, we eliminated unnecessary parsing overhead and enabled faster data access.
+
+As a result, we achieved around a 30% reduction in model loading time, improving overall inference startup latency.”
 # PRACTICE TIPS
 🎯  Record yourself on your phone answering each story. Watch it back once. You'll immediately know what to fix.
 ⏱️  Time yourself. Each story should be 2–3 minutes max. If you're going over, cut the Situation down.
