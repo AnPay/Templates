@@ -181,6 +181,25 @@ He eventually left to pursue backend development. I didn't try to hold him back.
 
 ✅ Use when asked: "Tell me about how you develop people" / "Tell me about a time you lost a team member" / "What's your philosophy on mentoring?"
 
+## Story 9
+I worked on reducing the quantization timeline for LVM models, specifically for Stable Diffusion, from several days to around 3 hours.
+
+Initially, the pipeline involved multiple sequential steps — preparing a large random calibration dataset, running FP32 inference to validate accuracy, performing calibration to compute weight and activation scales, generating the quantized model, and then validating accuracy again. This entire process was slow and heavily dependent on repeated Docker setups on remote servers.
+
+I identified two major bottlenecks:
+
+Overly large calibration datasets, which significantly increased calibration time without proportional accuracy gains
+Repeated Docker environment setup and remote execution overhead
+
+To optimize this, I:
+
+Reduced the calibration dataset to an optimal size through experimentation, maintaining accuracy while cutting down compute time
+Streamlined the workflow by reusing pre-built Docker environments on centralized servers instead of recreating them each time
+Simplified the pipeline to minimize redundant FP32 validation and unnecessary intermediate steps
+
+As a result, we reduced the total quantization time drastically to around 3 hours, while maintaining accuracy comparable to the FP32 baseline.
+
+
 # PRACTICE TIPS
 🎯  Record yourself on your phone answering each story. Watch it back once. You'll immediately know what to fix.
 ⏱️  Time yourself. Each story should be 2–3 minutes max. If you're going over, cut the Situation down.
