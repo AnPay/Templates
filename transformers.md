@@ -50,3 +50,119 @@
 48. What does strong off-diagonal attention indicate?
 49. Why does multi-head attention improve expressivity?
 50. How does GQA improve inference efficiency?
+🧠 HARD LEVEL QUESTIONS (Set 1)
+🔥 Attention Math + Behavior
+51. If all Q and K vectors are identical, what will the attention matrix look like after softmax? What will be the output?
+
+52. If Q and K are orthogonal for all token pairs, what happens to attention distribution?
+
+3. Consider removing the scaling factor √dₖ.
+Instead, you initialize weights with smaller variance.
+Will that fully solve the problem? Why or why not?
+
+4. Why is softmax applied row-wise and not column-wise in attention?
+
+5. If we replace:
+
+softmax(QKᵀ)
+
+with:
+
+(QKᵀ) / T
+
+(average instead of softmax), what breaks?
+
+🔥 Multi-Head + Representation
+6.
+
+Suppose all attention heads learn identical projections.
+What does multi-head attention reduce to?
+
+7.
+
+Why is concatenation used after multi-head attention instead of averaging heads?
+
+8.
+
+Can multi-head attention be simulated by a single head with larger dimension?
+If yes, why still use multi-head?
+
+🔥 Positional Encoding / RoPE
+9.
+
+Why does RoPE allow better extrapolation to longer sequences compared to learned positional embeddings?
+
+10.
+
+In RoPE, what happens if you apply rotation to V as well? What breaks?
+
+11.
+
+Why does RoPE encode relative position information implicitly?
+
+🔥 KV Cache + Inference (VERY IMPORTANT FOR YOU)
+12.
+
+During decoding, why does attention complexity per token reduce from O(T²) to O(T)?
+
+13.
+
+If KV cache is not used, what is the exact redundant computation happening?
+
+14.
+
+In GQA, how does sharing K/V across heads affect attention quality vs efficiency tradeoff?
+
+15.
+
+Why does KV cache size become a bottleneck for long-context LLMs?
+
+🔥 Numerical / Shape Reasoning
+16.
+
+Given:
+
+B = 1
+T = 1024
+h = 32
+d_head = 128
+
+Estimate memory required for attention matrix (QKᵀ) in float16.
+
+17.
+
+Why does Flash Attention reduce memory without changing mathematical output?
+
+🔥 Training Stability
+18.
+
+Why do Transformers without normalization fail to train beyond a few layers?
+
+19.
+
+Why is label smoothing important specifically for sequence models?
+
+20.
+
+What happens if residual connections are removed entirely?
+
+🔥 Conceptual Traps
+21.
+
+Does attention actually “focus” on words like humans do? Or is that an interpretation artifact?
+
+22.
+
+Why is attention not symmetric even though it uses dot products?
+
+23.
+
+If we shuffle tokens after embedding but before attention, what happens (with and without positional encoding)?
+
+24.
+
+Can attention weights alone fully explain model predictions?
+
+25.
+
+Why do early layers show diagonal attention while deeper layers show more complex patterns?
