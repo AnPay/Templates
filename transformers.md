@@ -53,7 +53,17 @@
 🧠 HARD LEVEL QUESTIONS (Set 1)
 🔥 Attention Math + Behavior
 51. If all Q and K vectors are identical, what will the attention matrix look like after softmax? What will be the output?
+A. If all Q and K vectors are identical, attention scores become constant. After softmax, this results in a uniform distribution. Hence, each token attends equally to all tokens, and the output becomes the average of all value vectors.
 
+🧠 Intuition (very important)
+
+This means:
+
+The model cannot distinguish between tokens
+
+👉 No structure
+👉 No relationships
+👉 Everything collapses into a mean representation
 52. If Q and K are orthogonal for all token pairs, what happens to attention distribution?
 
 3. Consider removing the scaling factor √dₖ.
