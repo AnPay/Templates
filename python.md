@@ -119,8 +119,81 @@ Example: int("10")
 Q23. How do you check if a variable is of a specific type using isinstance()?
 Example: isinstance(x, int)
 
+Q24. How do you iterate over both index and value using enumerate()?
+for i, val in enumerate([10, 20, 30]):
+    print(i, val)
+
+Q25. How do you iterate over two lists simultaneously using zip()?
+a = [1, 2, 3]
+b = ['a', 'b', 'c']
+
+for x, y in zip(a, b):
+    print(x, y)
+
 Q24. What is the difference between mutable and immutable data types? Give examples
 Mutable: can be modified (list, dict, set)
 Immutable: cannot be modified (int, float, str, tuple)
 
 If you revise this once or twice, you’ll be solid for basic Python interviews.
+
+Q26. What is list slicing? Explain with examples including step.
+Slicing extracts a portion of a list:
+lst = [1, 2, 3, 4, 5]
+
+lst[1:4]     # [2, 3, 4]
+lst[:3]      # [1, 2, 3]
+lst[::2]     # [1, 3, 5]
+lst[::-1]    # reverse list
+
+Q70. How do you sort a list? What is the difference between sort() and sorted()?
+
+sort() → modifies original list (in-place)
+sorted() → returns a new sorted list
+
+Q27.Flatten a list (very common interview)
+matrix = [[1,2],[3,4],[5,6]]
+[x for row in matrix for x in row]
+# [1,2,3,4,5,6]
+
+[expression for item in iterable if condition]
+[x*x for x in range(10) if x % 2 == 0]
+
+for x in range(10):        # iteration
+    if x % 2 == 0:        # condition
+        result.append(x*x) # expression
+
+Q28. How do you remove duplicates from a list using a set?
+Convert list to set (removes duplicates), then back to list:
+
+lst = [1, 2, 2, 3]
+lst = list(set(lst))  # [1,2,3]
+
+Q29. What is the difference between a shallow copy and deep copy of a list?
+
+Shallow copy → copies outer structure, inner objects are shared
+Deep copy → copies everything recursively
+import copy
+
+a = [[1,2], [3,4]]
+b = copy.copy(a)        # shallow
+c = copy.deepcopy(a)    # deep
+
+Q30. How do you check if a string is numeric, alphabetic, or alphanumeric?
+
+s.isnumeric()
+s.isalpha()
+s.isalnum()
+
+Q31. What are common string methods? Explain upper(), lower(), strip(), split(), join().
+
+upper() → converts to uppercase
+lower() → converts to lowercase
+strip() → removes leading/trailing spaces
+split() → splits string into list
+join() → joins list into string
+
+Q32. What is a decorator? Write a simple timing decorator.
+Q33.wraps
+lru_cache
+yield vs return
+nonlocal
