@@ -197,3 +197,19 @@ Q33.wraps
 lru_cache
 yield vs return
 nonlocal
+
+Q156. What is an exception in Python? How is it different from a syntax error?
+Q157. How does try-except-else-finally work? What is the role of each block?
+Q158. What is the difference between catching Exception and BaseException?
+Q159. How do you raise an exception manually using the raise statement?
+Q160. What is exception chaining? How does raise ... from ... work?
+Q161. How do you create a custom exception class?
+Q162. What is the difference between ValueError, TypeError, and AttributeError?
+Q163. How do you catch multiple exceptions in a single except block?
+Q164. What is the purpose of the finally block? Will it always execute?
+Q165. How do you log an exception with its traceback?
+Q166. What are context managers and how do they relate to exception handling?
+Q167. How do you suppress an exception intentionally using contextlib.suppress?
+Q168. What is the warnings module and how does it differ from exceptions?
+Q169. How do you implement retry logic around a function that may raise an exception?
+Q170. What is the difference between a handled and an unhandled exception?
