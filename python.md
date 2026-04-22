@@ -213,3 +213,25 @@ Q167. How do you suppress an exception intentionally using contextlib.suppress?
 Q168. What is the warnings module and how does it differ from exceptions?
 Q169. How do you implement retry logic around a function that may raise an exception?
 Q170. What is the difference between a handled and an unhandled exception?
+
+Q192. How does __init__.py work in a package?
+
+Marks a directory as a package (older Python requirement)
+Runs when the package is imported
+Can be used to:
+initialize package
+expose selected modules (__all__)
+
+Q.210 What is hash table
+A hash table:
+
+Uses a hash function to map keys → indices
+Python dict:
+Uses hash(key) → index
+Handles collisions (probing / resizing)
+Average O(1) lookup
+
+👉 Important:
+
+Keys must be hashable (immutable)
+Uses open addressing (not simple chaining)
