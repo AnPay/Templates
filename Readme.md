@@ -1,6 +1,8 @@
 ## Domain Resources
 
 - https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
+- https://huggingface.co/datasets/Ujjwal-Tyagi/ai-ml-foundations-book-collection/tree/main
+- https://www.deep-ml.com/collections
 
 
 ## From now on, every problem must include a written section BEFORE coding:
