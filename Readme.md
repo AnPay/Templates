@@ -3,7 +3,7 @@
 - https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
 - https://huggingface.co/datasets/Ujjwal-Tyagi/ai-ml-foundations-book-collection/tree/main
 - https://www.deep-ml.com/collections
-
+- https://apxml.com/courses/prompt-engineering-agentic-workflows
 
 ## From now on, every problem must include a written section BEFORE coding:
 - Pattern:
